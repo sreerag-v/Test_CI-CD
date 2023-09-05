@@ -4,7 +4,9 @@ import (
 	"Test/Test-Crud/models"
 	"fmt"
 	"log"
+	"os"
 
+	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -18,8 +20,12 @@ func InitDB() *gorm.DB {
 }
 
 func connectDB() *gorm.DB {
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	db_URL := "host= localhost user= postgres password= 12345 dbname= mycompany port= 5432 sslmode= disable"
+	db_URL := os.Getenv("DNS")
 
 	db, err := gorm.Open(postgres.Open(db_URL), &gorm.Config{})
 	if err != nil {
