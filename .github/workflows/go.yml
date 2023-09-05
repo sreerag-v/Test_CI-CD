@@ -13,8 +13,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    env:
-     DNS: host= localhost user= postgres password= 12345 dbname= mycompany port= 5432 sslmode= disable
     steps:
     - uses: actions/checkout@v3
 
